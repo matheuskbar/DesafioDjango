@@ -2,12 +2,22 @@
 
 {% load bootstrap %}
 
+{% block estilo %}
+    <style>
+        .btn{
+            margin-top: 8px;
+            margin-right: 4px;
+        }
+    </style>
+{% endblock %}
+
 {% block conteudo %}
     <h2>Login</h2>
     <form method="post">
         {% csrf_token %}
         {{form|bootstrap }}
         <button type="submit" class="btn btn-primary">Entrar</button>
+        <span class="span_cadastro"> Ou <a href="{% url 'cadastrar_usuario' %}">Crie uma conta</a></span>
     </form>
 
 {% endblock %}
