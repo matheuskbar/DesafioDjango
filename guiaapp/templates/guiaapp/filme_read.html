@@ -1,0 +1,36 @@
+{% extends 'conteudo.html' %}
+
+{% block conteudo %}
+  <h1>Detalhes Filme</h1>
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Campo</th>
+      <th scope="col">Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Id</th>
+      <td>{{ filmes.id }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Nome do Filme</th>
+      <td>{{ filmes.nome }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Finalizado</th>
+      <td>{{ filmes.get_finalizado }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Resenha</th>
+      <td>{{ filmes.resenha }}</td>
+    </tr>
+  </tbody>
+</table>
+<a class="btn btn-primary" href="{% url 'guiaapp:filme_list' %}" role="button">
+  <span class="text-light text-center">
+    Voltar
+  </span>
+</a>
+{% endblock %}

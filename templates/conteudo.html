@@ -1,0 +1,36 @@
+{% extends 'menu.html' %}
+
+{% block conteudo %}
+  <div class="card">
+    <div class="card-header">
+      App Guia Filmes
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Sua Lista de Filmes</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="{% url 'guiaapp:filme_list' %}" class="btn btn-primary">Acessar App</a>
+    </div>
+  </div>
+  <br>
+  <div class="card">
+    <div class="card-header">
+      To Do App
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Sua Lista de Coisas a Fazer</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="{% url 'tarefa_index' %}" class="btn btn-primary">Acessar App</a>
+    </div>
+  </div>
+  <br>
+  <div class="card">
+    <div class="card-header">
+      App Agenda
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Sua Agenda</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="{% url 'em_producao' %}" class="btn btn-primary">Acessar App</a>
+    </div>
+  </div>
+{% endblock %}

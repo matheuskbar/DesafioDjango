@@ -1,0 +1,28 @@
+{% extends 'conteudo.html' %}
+
+{% block conteudo %}
+    <div class="container">
+        <h1 class="text-center">{{nome}}</h1>
+        <h4 class="text-center">Pedimos desculpas pelo transtorno. Volte em outro momento ou cadastre seu e-mail que avisaremos quando disponível.</h4>
+        <br>
+        <div class="container-sm form-control text-center">
+            <h5 class="text-center">Cadastrar E-mail</h5><br>
+            <form action="{% url 'em_producao' %}" method="post">
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                </div>
+
+                <button class="btn btn-dark">Inscrever E-mail</button>
+            </form>
+        </div>
+        <br>
+        <a class="d-grid gap-2 col-3 mx-auto btn btn-primary" href="{% url 'home' %}" role="button">
+            <span class="text-light text-center">
+                Voltar
+            </span>
+        </a>
+    </div>
+
+
+{% endblock %}

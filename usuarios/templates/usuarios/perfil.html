@@ -1,0 +1,14 @@
+{% extends 'conteudo.html' %}
+
+{% load bootstrap %}
+
+{% block conteudo %}
+    <h2>Meus Dados</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{form|bootstrap }}
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="reset" class="btn btn-primary">Resetar</button>
+    </form>
+
+{% endblock %}

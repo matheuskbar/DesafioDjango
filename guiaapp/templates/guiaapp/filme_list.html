@@ -1,0 +1,46 @@
+{% extends 'conteudo.html' %}
+{% block conteudo %}
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome do filme</th>
+      <th scope="col">Finalizado</th>
+      <th scope="col">Resenha</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for filme in filmes %}
+        <tr>
+          <th scope="row">{{ filme.id }}</th>
+          <td>{{ filme.nome }}</td>
+          <td>{{ filme.get_finalizado }}</td>
+          <td>{{ filme.resenha }}</td>
+          <td>
+              <a class="btn btn-primary" href="{% url 'guiaapp:filme_read' filme.id %}" role="button">
+                <span class="text-light text-center">
+                  Vizualizar
+                </span>
+              </a>
+            <a class="btn btn-warning" href="{% url 'guiaapp:filme_update' filme.id %}" role="button">
+              <span class="text-light text-center">
+                Editar
+              </span>
+            </a>
+            <a class="btn btn-danger" href="{% url 'guiaapp:filme_delete' filme.id %}" role="button">
+              <span class="text-light text-center">
+                Deletar
+              </span>
+            </a>
+          </td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a class="btn btn-primary" href="{% url 'guiaapp:filme_create' %}" role="button">
+  <span class="text-light text-center">
+    Criar novo
+  </span>
+</a>
+{% endblock  %}

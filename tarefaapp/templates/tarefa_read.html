@@ -1,0 +1,31 @@
+{% extends 'conteudo.html' %}
+
+{% block conteudo %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Campo</th>
+        <th scope="col">Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <th scope="row">Id</th>
+          <td>{{ tarefa.id }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Conteúdo</th>
+          <td>{{ tarefa.conteudo }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Data</th>
+          <td>{{ tarefa.data|date:'l - d, M, Y - H:i' }}h</td>
+        </tr>
+    </tbody>
+  </table>
+  <a class="btn btn-primary" href="{% url 'tarefa_index' %}" role="button">
+    <span class="text-light text-center">
+      Voltar
+    </span>
+  </a>
+{% endblock%}

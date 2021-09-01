@@ -1,0 +1,82 @@
+{% extends 'conteudo.html' %}
+
+{% load bootstrap %}
+
+{% block estilo %}
+    <style>
+
+        .card{
+            box-shadow: 5px 8px 15px;
+        }
+
+        .card-text{
+            font-size: 20px;
+        }
+
+        .btn.mt{
+            margin-top: 8px;
+        }
+
+        .btn.mr{
+            margin-right: 4px;
+        }
+    </style>
+{% endblock %}
+
+{% block conteudo %}
+    <h1 class="text-center">To Do App</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button class="btn btn-success mt" type="submit">Enviar</button>
+    </form>
+    {% for tarefa in tarefas %}
+        <!-- Modal -->
+        <div class="modal fade" id="modalDelete{{tarefa.id}}" tabindex="-1" aria-labelledby="modalDeleteLabel{{tarefa.id}}" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalDeleteLabel{{tarefa.id}}">Deletar Tarefa {{tarefa.id}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Deseja realmente deletar a tarefa: {{tarefa.conteudo}}?
+              </div>
+              <div class="modal-footer">
+                  <a class="btn btn-danger" href="{% url 'tarefa_delete' tarefa.id %}" role="button">
+                      <span class="text-light text-center">
+                        Deletar
+                      </span>
+                  </a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mt-5">
+            <h6 class="card-header">Tarefa {{ tarefa.id }} | {{ tarefa.data|date:'l - d, M, Y - H:i' }}h</h6>
+            <div class="card-body">
+                <p class="card-text">{{ tarefa.conteudo }}</p>
+                <a class="btn btn-primary mr" href="{% url 'tarefa_read' tarefa.id %}" role="button">
+                  <span class="text-light text-center">
+                    Vizualizar
+                  </span>
+                </a>
+                <a class="btn btn-warning mr" href="{% url 'tarefa_update' tarefa.id %}" role="button">
+                  <span class="text-light text-center">
+                    Editar
+                  </span>
+                </a>
+                <!-- Button trigger modal -->
+                <a class="btn btn-danger mr" role="button" data-bs-toggle="modal" data-bs-target="#modalDelete{{tarefa.id}}">
+                  <span class="text-light text-center">
+                    Deletar
+                  </span>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+    <br>
+
+{% endblock%}
