@@ -47,4 +47,3 @@ def usuario_update(request):
 
 
 
-
