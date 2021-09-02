@@ -1,5 +1,6 @@
 #from django.urls import reverse_lazy
 #from django.views.generic.edit import CreateView
+from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import redirect, render, get_object_or_404
 
 from usuarios.forms import UsuarioForm
@@ -44,6 +45,18 @@ def usuario_update(request):
     }
     return render(request, 'usuarios/perfil.html', context)
 
+def alterar_senha(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = PasswordChangeForm(user=request.user)
+    context = {
+        'form': form
+    }
+    return render(request, 'usuarios/alterar_senha.html', context)
 
 
 

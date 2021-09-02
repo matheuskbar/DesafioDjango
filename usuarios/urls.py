@@ -9,4 +9,5 @@ urlpatterns = [
     #path('cadastrar/', UsuarioCreate.as_view(), name='cadastrar'),
     path('cadastrar/', views.usuario_create, name='cadastrar_usuario'),
     path('meus_dados/', views.usuario_update, name='update_dados'),
+    path('alterar_senha/', views.alterar_senha, name='alterar_senha'),
 ]
