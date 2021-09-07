@@ -1,0 +1,12 @@
+{% extends 'conteudo.html' %}
+
+{% load bootstrap %}
+
+{% block conteudo %}
+    <h1>Recuperar Senha</h1>
+    <form class="card" method="post">
+        {% csrf_token %}
+        {{form|bootstrap}}
+        <button type="submit" class="btn btn-primary pull-right">Enviar</button>
+    </form>
+{% endblock %}

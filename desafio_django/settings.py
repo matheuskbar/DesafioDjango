@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'usuarios.apps.UsuariosConfig', #outra forma de add apps
     'bootstrapform',
     'crispy_forms',
+    'anymail',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -141,3 +143,7 @@ LOGIN_URL = 'login'
 
 # django-crispy-forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"  # or sendgrid.EmailBackend, or...
+DEFAULT_FROM_EMAIL = "matheuskbar@gmail.com"  # if you don't already have this in settings
+SERVER_EMAIL = DEFAULT_FROM_EMAIL  # ditto (default from-email for Django errors)

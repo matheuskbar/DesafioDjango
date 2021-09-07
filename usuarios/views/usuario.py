@@ -2,10 +2,10 @@
 #from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import redirect, render, get_object_or_404
-
-from usuarios.forms import UsuarioForm
+from usuarios.forms import UsuarioForm, RecuperarSenhaForm
 from usuarios.models import Perfil
 from usuarios.forms import PerfilForm
+
 
 # Aqui é a forma atraves de uma view generica
 #class UsuarioCreate(CreateView):
@@ -57,6 +57,20 @@ def alterar_senha(request):
         'form': form
     }
     return render(request, 'usuarios/alterar_senha.html', context)
+
+
+def recuperar_senha(request):
+    if request.method == 'POST':
+        form = RecuperarSenhaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = RecuperarSenhaForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'usuarios/recuperar_senha.html', context)
 
 
 
