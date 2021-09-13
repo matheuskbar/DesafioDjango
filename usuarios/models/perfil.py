@@ -6,5 +6,6 @@ class Perfil(models.Model):
     email = models.EmailField(max_length=200, blank=True, verbose_name='E-mail', help_text='Digite seu e-mail.')
     cpf = models.CharField(max_length=14, blank=True, verbose_name='CPF', help_text='Digite seu número de CPF (opcional)')
     telefone = models.CharField(max_length=14, null=True)
+    foto = models.FileField(upload_to='img/')
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
 
