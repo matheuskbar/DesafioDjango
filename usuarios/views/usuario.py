@@ -1,10 +1,13 @@
 #from django.urls import reverse_lazy
 #from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.models import User
 from django.shortcuts import redirect, render, get_object_or_404
-from usuarios.forms import UsuarioForm, RecuperarSenhaForm
+from django.core.mail import send_mail
+from usuarios.forms import UsuarioForm
 from usuarios.models import Perfil
 from usuarios.forms import PerfilForm
+from usuarios.gerador_senha import *
 
 
 # Aqui é a forma atraves de uma view generica
@@ -61,16 +64,36 @@ def alterar_senha(request):
 
 def recuperar_senha(request):
     if request.method == 'POST':
-        form = RecuperarSenhaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')
-    else:
-        form = RecuperarSenhaForm()
-    context = {
-        'form': form
-    }
-    return render(request, 'usuarios/recuperar_senha.html', context)
+        nome = request.POST.get('nome_usuario')
+        email = request.POST.get('email_rec_senha')
+        nova_senha = gerador_senha() # Gera uma nova senha aleatória
+
+        # Trocar senha do usuário
+        usuario = User.objects.get(username=nome)
+        usuario.set_password(nova_senha)
+        usuario.save()
+
+        mensagem = f'''
+        Olá {nome}, foi gerada uma nova senha para seu acesso.
+        Já poderá acessar o painel com seu nome de usuário e sua nova senha.
+        
+        
+        Nome de Usuário: {nome}
+        Nova Senha: {nova_senha}
+
+        Obs.: Após o login, poderá alterar a senha em seu perfil.
+        
+        Att., Equipe
+        '''
+        send_mail(
+            'Recuperar Senha',
+            mensagem,
+            email,
+            ['matheuskbar@gmail.com'],
+            fail_silently = False
+        )
+        return redirect('login')
+    return render(request, 'usuarios/recuperar_senha.html')
 
 
 

@@ -4,9 +4,19 @@
 
 {% block conteudo %}
     <h1>Recuperar Senha</h1>
-    <form class="card" method="post">
+    <form method="post" class="card p-4">
         {% csrf_token %}
-        {{form|bootstrap}}
-        <button type="submit" class="btn btn-primary pull-right">Enviar</button>
+        <div class="mb-3">
+            <label for="nome_usuario" class="form-label">Nome de Usuário</label>
+            <input type="text" class="form-control" id="nome_usuario" name="nome_usuario" aria-describedby="nome_help">
+            <div id="nome_help" class="form-text">Insira seu nome de usuário.</div>
+        </div>
+      <div class="mb-3">
+          <label for="email_rec_senha" class="form-label">Seu E-mail</label>
+          <input type="email" class="form-control" id="email_rec_senha" name="email_rec_senha" aria-describedby="email_help">
+          <div id="email_help" class="form-text">Insira um e-mail para a recuperação de senha.</div>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+
     </form>
 {% endblock %}
