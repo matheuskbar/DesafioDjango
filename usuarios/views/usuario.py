@@ -37,7 +37,7 @@ def usuario_create(request):
 def usuario_update(request):
     perfil = get_object_or_404(Perfil, usuario=request.user)
     if request.method == 'POST':
-        form = PerfilForm(request.POST, instance=perfil)
+        form = PerfilForm(request.POST, request.FILES, instance=perfil)
         if form.is_valid():
             form.save()
             return redirect('home')
