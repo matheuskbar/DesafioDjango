@@ -1,6 +1,21 @@
 {% extends 'menu.html' %}
 
+{% block titulo %}
+    <h1>Seu App Preferido</h1>
+    {% if request.user.is_authenticated %}
+      <h6>Seja bem vindo, <span class="">{{ request.user }}!!</span></h6>
+    {% else %}
+      <h6>Aqui você encontra o que precisa para seu dia-a-dia.</h6>
+    {% endif %}
+{% endblock %}
+
 {% block conteudo %}
+  <!-- Header -->
+  <header class="">
+    <h1 class=""><b></b></h1>
+
+  </header>
+
   <div class="card">
     <div class="card-header">
       App Guia Filmes

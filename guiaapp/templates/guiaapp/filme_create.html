@@ -2,8 +2,11 @@
 
 {% load bootstrap %}
 
+{% block titulo %}
+    <h1>Cadastrar Filme</h1>
+{% endblock %}
+
 {% block conteudo %}
-  <h1>Cadastrar Filme</h1>
     <div class="col-12">
         <form action="{% url 'guiaapp:filme_create' %}" method="post">
             {% csrf_token %}

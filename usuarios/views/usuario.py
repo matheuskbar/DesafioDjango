@@ -34,19 +34,26 @@ def usuario_create(request):
 
     return render(request, 'usuarios/cadastrar.html', context) # Poderia usar o mesmo template do login, com algumas modificações no html
 
+def usuario_read(request):
+    usuario = get_object_or_404(Perfil, usuario=request.user)
+    context = {
+        'usuario': usuario,
+    }
+    return render(request, 'usuarios/perfil.html', context)
+
 def usuario_update(request):
     perfil = get_object_or_404(Perfil, usuario=request.user)
     if request.method == 'POST':
         form = PerfilForm(request.POST, request.FILES, instance=perfil)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('meus_dados')
     else:
         form = PerfilForm(instance=perfil)
     context = {
         'form': form,
     }
-    return render(request, 'usuarios/perfil.html', context)
+    return render(request, 'usuarios/perfil_update.html', context)
 
 def alterar_senha(request):
     if request.method == 'POST':

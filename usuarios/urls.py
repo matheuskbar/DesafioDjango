@@ -8,7 +8,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     #path('cadastrar/', UsuarioCreate.as_view(), name='cadastrar'),
     path('cadastrar/', views.usuario_create, name='cadastrar_usuario'),
-    path('meus_dados/', views.usuario_update, name='update_dados'),
+    path('meus_dados', views.usuario_read, name='meus_dados'),
+    path('update_dados/', views.usuario_update, name='update_dados'),
     path('alterar_senha/', views.alterar_senha, name='alterar_senha'),
     path('recuperar_senha', views.recuperar_senha, name='recuperar_senha'),
 ]

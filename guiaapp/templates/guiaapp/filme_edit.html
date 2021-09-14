@@ -1,7 +1,10 @@
 {% extends 'conteudo.html' %}
 
+{% block titulo %}
+    <h1>Editar Filme</h1>
+{% endblock %}
+
 {% block conteudo %}
-  <h1>Editar Filme</h1>
     <div class="col-12">
         <form action="{% url 'guiaapp:filme_update' filme_id %}" method="post">
             {% csrf_token %}
