@@ -1,7 +1,11 @@
 {% extends 'conteudo.html' %}
+
 {% block titulo %}
-    <h1 class="text-center">To Do App</h1>
+  <div id="titulo" class="card card-header mt-5 mb-3">
+    <h1>Editar Tarefa</h1>
+  </div>
 {% endblock %}
+
 {% block conteudo %}
   <form method="post">
     {% csrf_token %}

@@ -2,7 +2,35 @@
 
 
 {% block estilo %}
+    #titulo.card {
+        background-color: #001D3D;
+        color: #FFF;
+        border-radius: 15px !important;
+        box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.4) !important;
+    }
 
+    .row {
+        padding: 0 0.4em;
+    }
+
+    .col {
+        background-color: #001D3D;
+        margin: 0 0.4em;
+        padding: 40px 10px;
+        box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.4);
+        border-radius: 15px;
+    }
+
+    h2 {
+        color: #FFF;
+        text-align: center;
+        margin: 0.6em;
+    }
+
+    img {
+        width: 100%;
+        border-radius: 15px !important;
+    }
 {% endblock %}
 
 {% block head %}
@@ -10,21 +38,24 @@
 {% endblock %}
 
 {% block titulo %}
-    <h1>Seus Dados</h1>
+    <div id="titulo" class="card card-header mt-5 mb-3">
+        <h1>Seus Dados</h1>
+    </div>
 {% endblock %}
+
 
 {% block conteudo %}
 
     <div class="row">
-        <div class="col-4">
-            <img src="media/{{ usuario.foto }}" style="width:100%" alt="">
+        <div class="col col-3   ">
+            <img src="media/{{ usuario.foto }}" alt="">
             <div class="">
                 <h2>{{ request.user }}</h2>
             </div>
 
             <ul class="list-group list-group-flush">
               <li class="list-group-item">
-                  <a class="nav-link active" aria-current="page" href="{% url 'update_dados' %}">Alterar Dados Pessoais</a>
+                  <a  class="nav-link active" aria-current="page" href="{% url 'update_dados' %}">Alterar Dados Pessoais</a>
               </li>
               <li class="list-group-item">
                   <a class="nav-link" href="{% url 'alterar_senha' %}">Alterar Senha de Usuário</a>
@@ -35,7 +66,7 @@
             </ul>
 
         </div>
-        <div class="col-8">
+        <div class="col">
             <div class="card mb-2">
                 <div class="card-header">
                   Nome Completo:

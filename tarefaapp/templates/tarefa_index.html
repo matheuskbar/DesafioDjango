@@ -3,28 +3,35 @@
 {% load bootstrap %}
 
 {% block estilo %}
-    <style>
+    #titulo.card {
+        background-color: #001D3D;
+        color: #FFF;
+        border-radius: 15px !important;
+        box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.4) !important;
+    }
 
-        .card{
-            box-shadow: 5px 8px 15px;
-        }
+    .card{
+        box-shadow: 5px 8px 15px;
+    }
 
-        .card-text{
-            font-size: 20px;
-        }
+    .card-text{
+        font-size: 20px;
+    }
 
-        .btn.mt{
-            margin-top: 8px;
-        }
+    .btn.mt{
+        margin-top: 8px;
+    }
 
-        .btn.mr{
-            margin-right: 4px;
-        }
-    </style>
+    .btn.mr{
+        margin-right: 4px;
+    }
+
 {% endblock %}
 
 {% block titulo %}
-    <h1 class="text-center">To Do App</h1>
+  <div id="titulo" class="card card-header mt-5 mb-3">
+    <h1>To Do App</h1>
+  </div>
 {% endblock %}
 
 {% block conteudo %}

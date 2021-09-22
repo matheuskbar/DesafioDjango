@@ -1,7 +1,20 @@
 {% extends 'conteudo.html' %}
 
+{% block estilo %}
+
+    .card {
+        background-color: #001D3D;
+        color: #FFF;
+        border-radius: 15px !important;
+        box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.4) !important;
+    }
+
+{% endblock %}
+
 {% block titulo %}
-  <h1>Vizualizar Filme</h1>
+  <div class="card card-header mt-5 mb-3">
+    <h1>Visualizar Filme</h1>
+  </div>
 {% endblock %}
 
 {% block conteudo %}
