@@ -1,51 +1,78 @@
 {% extends 'menu.html' %}
 
+{% block estilo %}
+    .col {
+        background-color: #001D3D;
+        text-align: center;
+        margin: 5px 10px;
+        padding: 40px 10px;
+        box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.4);
+        border-radius: 15px;
+    }
+
+    .col:hover {
+        background-color: #FFC300;
+    }
+
+    .titulo-conteudo {
+        margin-top: 15px;
+        color: #FFF;
+    }
+    .card {
+        background-color: #001D3D;
+        color: #FFF;
+        border-radius: 15px !important;
+        box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+{% endblock %}
+
 {% block titulo %}
-    <h1>Seu App Preferido</h1>
-    {% if request.user.is_authenticated %}
-      <h6>Seja bem vindo, <span class="">{{ request.user }}!!</span></h6>
-    {% else %}
-      <h6>Aqui você encontra o que precisa para seu dia-a-dia.</h6>
-    {% endif %}
+    <div class="card card-header mt-5 mb-3">
+        <h1>Seu App Preferido</h1>
+        {% if request.user.is_authenticated %}
+          <h6>Seja bem vindo, <span class="">{{ request.user }}!!</span></h6>
+        {% else %}
+          <h6>Aqui você encontra o que precisa para seu dia-a-dia.</h6>
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block conteudo %}
-  <!-- Header -->
-  <header class="">
-    <h1 class=""><b></b></h1>
-
-  </header>
-
-  <div class="card">
-    <div class="card-header">
-      App Guia Filmes
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'guiaapp:filme_list' %}">
+                <div>
+                    <img src="/media/imagens/Filme.png" alt="">
+                </div>
+                <div>
+                    <h4 class="titulo-conteudo">App Guia Filmes</h4>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="{% url 'tarefa_index' %}">
+                <div>
+                    <img src="/media/imagens/todo.png" alt="">
+                </div>
+                <div>
+                    <h4 class="titulo-conteudo">To Do App</h4>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="{% url 'em_producao' %}">
+                <div>
+                    <img src="/media/imagens/agenda.png" alt="">
+                </div>
+                <div>
+                    <h4 class="titulo-conteudo">App Agenda</h4>
+                </div>
+            </a>
+        </div>
     </div>
-    <div class="card-body">
-      <h5 class="card-title">Sua Lista de Filmes</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="{% url 'guiaapp:filme_list' %}" class="btn btn-primary">Acessar App</a>
-    </div>
-  </div>
-  <br>
-  <div class="card">
-    <div class="card-header">
-      To Do App
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">Sua Lista de Coisas a Fazer</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="{% url 'tarefa_index' %}" class="btn btn-primary">Acessar App</a>
-    </div>
-  </div>
-  <br>
-  <div class="card">
-    <div class="card-header">
-      App Agenda
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">Sua Agenda</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="{% url 'em_producao' %}" class="btn btn-primary">Acessar App</a>
-    </div>
-  </div>
 {% endblock %}
