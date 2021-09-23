@@ -4,16 +4,42 @@
 
 {% block estilo %}
 
+    .row {
+        margin: auto;
+        width: 100%;
+        padding: 30px 20px;
+    }
+
+    .card {
+        background-color: #001D3D;
+        color: #FFF;
+        border-radius: 15px !important;
+        box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    .btn {
+        margin-top: 1em;
+    }
+{% endblock %}
+
+{% block titulo %}
+    <div class="card card-header mt-5 mb-3">
+        <h1>Editar Meus Dados</h1>
+    </div>
 {% endblock %}
 
 {% block conteudo %}
-    <h2>Meus Dados</h2>
-
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form|bootstrap }}
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <button type="reset" class="btn btn-primary">Resetar</button>
-    </form>
+    <div class="row card">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-primary" href="{% url 'meus_dados' %}" role="button">
+                <span class="text-light text-center">
+                  Voltar
+                </span>
+            </a>
+        </form>
+    </div>
 
 {% endblock %}
