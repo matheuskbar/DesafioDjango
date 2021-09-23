@@ -1,6 +1,7 @@
 {% extends 'menu.html' %}
 
 {% block estilo %}
+
     .col {
         background-color: #001D3D;
         text-align: center;
@@ -44,35 +45,29 @@
 
 {% block conteudo %}
     <div class="row">
-        <div class="col">
-            <a href="{% url 'guiaapp:filme_list' %}">
-                <div>
-                    <img src="/media/imagens/Filme.png" alt="">
-                </div>
-                <div>
-                    <h4 class="titulo-conteudo">App Guia Filmes</h4>
-                </div>
-            </a>
-        </div>
-        <div class="col">
-            <a href="{% url 'tarefa_index' %}">
-                <div>
-                    <img src="/media/imagens/todo.png" alt="">
-                </div>
-                <div>
-                    <h4 class="titulo-conteudo">To Do App</h4>
-                </div>
-            </a>
-        </div>
-        <div class="col">
-            <a href="{% url 'em_producao' %}">
-                <div>
-                    <img src="/media/imagens/agenda.png" alt="">
-                </div>
-                <div>
-                    <h4 class="titulo-conteudo">App Agenda</h4>
-                </div>
-            </a>
-        </div>
+        <a class="col" href="{% url 'guiaapp:filme_list' %}">
+            <div>
+                <img src="/media/imagens/Filme.png" alt="">
+            </div>
+            <div>
+                <h4 class="titulo-conteudo">App Guia Filmes</h4>
+            </div>
+        </a>
+        <a class="col" href="{% url 'tarefa_index' %}">
+            <div>
+                <img src="/media/imagens/todo.png" alt="">
+            </div>
+            <div>
+                <h4 class="titulo-conteudo">To Do App</h4>
+            </div>
+        </a>
+        <a class="col" href="{% url 'em_producao' %}">
+            <div>
+                <img src="/media/imagens/agenda.png" alt="">
+            </div>
+            <div>
+                <h4 class="titulo-conteudo">App Agenda</h4>
+            </div>
+        </a>
     </div>
 {% endblock %}

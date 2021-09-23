@@ -31,6 +31,11 @@
         width: 100%;
         border-radius: 15px !important;
     }
+
+    .a-change {
+        color: #000814!important;
+    }
+
 {% endblock %}
 
 {% block head %}
@@ -45,7 +50,6 @@
 
 
 {% block conteudo %}
-
     <div class="row">
         <div class="col col-3   ">
             <img src="media/{{ usuario.foto }}" alt="">
@@ -53,15 +57,15 @@
                 <h2>{{ request.user }}</h2>
             </div>
 
-            <ul class="list-group list-group-flush">
+            <ul id="change" class="list-group list-group-flush">
               <li class="list-group-item">
-                  <a  class="nav-link active" aria-current="page" href="{% url 'update_dados' %}">Alterar Dados Pessoais</a>
+                  <a  class="nav-link a-change" aria-current="page" href="{% url 'update_dados' %}">Alterar Dados Pessoais</a>
               </li>
               <li class="list-group-item">
-                  <a class="nav-link" href="{% url 'alterar_senha' %}">Alterar Senha de Usuário</a>
+                  <a class="nav-link a-change" href="{% url 'alterar_senha' %}">Alterar Senha de Usuário</a>
               </li>
               <li class="list-group-item">
-                  <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+                  <a class="nav-link a-change" href="{% url 'logout' %}">Sair</a>
               </li>
             </ul>
 

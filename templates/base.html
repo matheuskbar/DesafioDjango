@@ -12,6 +12,9 @@
 
     {% endblock %}
     <style>
+      nav {
+          background-color: #000814;
+        }
       {% block estilo %}
 
       {% endblock %}
@@ -25,18 +28,16 @@
 
       {% endblock %}
     </nav>
-    <header id="cabecalho">
-      <div class="container">
-        {% block titulo %}
+    <header id="cabecalho" class="container">
+      {% block titulo %}
 
-        {% endblock %}
-      </div>
+      {% endblock %}
     </header>
-    <div class="container">
+    <main class="container">
       {% block conteudo %}
 
       {% endblock %}
-    </div>
+    </main>
 
 
     <!-- Optional JavaScript; choose one of the two! -->
