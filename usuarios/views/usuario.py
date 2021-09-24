@@ -8,6 +8,7 @@ from usuarios.forms import UsuarioForm
 from usuarios.models import Perfil
 from usuarios.forms import PerfilForm
 from usuarios.gerador_senha import *
+from django.contrib import messages
 
 
 # Aqui é a forma atraves de uma view generica
@@ -24,6 +25,12 @@ def usuario_create(request):
             form.save()
             Perfil.objects.create(usuario=form.instance)
             # TODO: Implementar mensagem
+            # messages.add_message(request, messages.INFO, 'Hello world.')
+            # messages.debug(request, '%s SQL statements were executed.')
+            # messages.info(request, 'Three credits remain in your account.')
+            # messages.success(request, 'Profile details updated.')
+            # messages.warning(request, 'Your account expires in three days.')
+            # messages.error(request, 'Document deleted.')
             return redirect('login')
     else:
         form = UsuarioForm()
