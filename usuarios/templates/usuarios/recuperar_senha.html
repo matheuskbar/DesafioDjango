@@ -1,22 +1,71 @@
-{% extends 'conteudo.html' %}
+{% extends 'menu.html' %}
 
 {% load bootstrap %}
 
-{% block conteudo %}
-    <h1>Recuperar Senha</h1>
-    <form method="post" class="card p-4">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label for="nome_usuario" class="form-label">Nome de Usuário</label>
-            <input type="text" class="form-control" id="nome_usuario" name="nome_usuario" aria-describedby="nome_help">
-            <div id="nome_help" class="form-text">Insira seu nome de usuário.</div>
-        </div>
-      <div class="mb-3">
-          <label for="email_rec_senha" class="form-label">Seu E-mail</label>
-          <input type="email" class="form-control" id="email_rec_senha" name="email_rec_senha" aria-describedby="email_help">
-          <div id="email_help" class="form-text">Insira um e-mail para a recuperação de senha.</div>
-      </div>
-      <button type="submit" class="btn btn-primary">Enviar</button>
+{% block estilo %}
 
-    </form>
+    @media only screen and (max-width: 430px) {
+        .row {
+            width: 20em!important;
+        }
+    }
+
+    .row {
+        width: 23em;
+        margin: 0 auto;
+    }
+
+    .col {
+        background-color: #001D3D;
+        text-align: center;
+        padding: 2em 1.5em;
+        box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .card {
+        color: #FFF;
+        border-radius: 1em !important;
+        box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    h1 {
+        margin-bottom: 30px;
+    }
+
+    a {
+        color: #FFC300;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #FFF;
+    }
+
+    form>div>.btn {
+        color: #001D3D;
+        font-size: 1.1em;
+    }
+
+{% endblock %}
+
+{% block conteudo %}
+    <div class="row">
+        <div class="col card mt-5">
+            <h1>Recuperar Senha</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="nome_usuario" class="form-label">Nome de Usuário</label>
+                    <input type="text" class="form-control" id="nome_usuario" name="nome_usuario" aria-describedby="nome_help" required>
+                    <div id="nome_help" class="form-text">Insira seu nome de usuário.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="email_rec_senha" class="form-label">Seu E-mail</label>
+                  <input type="email" class="form-control" id="email_rec_senha" name="email_rec_senha" aria-describedby="email_help" required>
+                  <div id="email_help" class="form-text">Insira um e-mail para a recuperação de senha.</div>
+                </div>
+                <div class="card-body">
+                    <button type="submit" class="btn form-control btn-warning">Enviar</button>
+                </div>
+            </form>
 {% endblock %}

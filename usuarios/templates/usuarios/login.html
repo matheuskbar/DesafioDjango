@@ -1,24 +1,68 @@
-{% extends 'conteudo.html' %}
+{% extends 'menu.html' %}
 
 {% load bootstrap %}
 
 {% block estilo %}
-    <style>
-        .btn{
-            margin-top: 8px;
-            margin-right: 4px;
+
+    @media only screen and (max-width: 430px) {
+        .row {
+            width: 20em!important;
         }
-    </style>
+    }
+
+    .row {
+        width: 23em;
+        margin: 0 auto;
+    }
+
+    .col {
+        background-color: #001D3D;
+        text-align: center;
+        padding: 2em 1.5em;
+        box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .card {
+        color: #FFF;
+        border-radius: 1em !important;
+        box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    h1 {
+        margin-bottom: 30px;
+    }
+
+    a {
+        color: #FFC300;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #FFF;
+    }
+
+    form>div>.btn {
+        color: #001D3D;
+        font-size: 1.1em;
+    }
+
 {% endblock %}
 
 {% block conteudo %}
-    <h2>Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{form|bootstrap }}
-        <button type="submit" class="btn btn-primary">Entrar</button>
-        <span class="span_cadastro"> Ou <a href="{% url 'cadastrar_usuario' %}">Crie uma conta</a></span>
-    </form>
-    <a href="{% url 'recuperar_senha' %}">Esqueci minha senha</a>
+
+    <div class="row">
+        <div class="col card mt-5">
+            <h1>Login</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{form|bootstrap }}
+                <div class="card-body">
+                    <button type="submit" class="btn form-control btn-warning">Entrar</button>
+                    ou <a href="{% url 'cadastrar_usuario' %}">Crie uma conta.</a></span>
+                </div>
+            </form>
+            <a href="{% url 'recuperar_senha' %}">Esqueci minha senha!</a>
+        </div>
+    </div>
 
 {% endblock %}

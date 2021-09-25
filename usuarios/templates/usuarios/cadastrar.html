@@ -1,19 +1,65 @@
-{% extends 'conteudo.html' %}
+{% extends 'menu.html' %}
 
 {% load bootstrap %}
+{% load crispy_forms_tags %}
+
+{% block estilo %}
+
+    @media only screen and (max-width: 500px) {
+        .row {
+            width: 22em!important;
+        }
+    }
+
+    .row {
+        width: 30em;
+        margin: 0 auto;
+        margin-bottom: 2.2em;
+    }
+
+    .col {
+        background-color: #001D3D;
+        text-align: center;
+        padding: 2em 1.5em;
+        box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .card {
+        color: #FFF;
+        border-radius: 1em !important;
+        box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    h1 {
+        margin-bottom: 30px;
+    }
+
+    a {
+        color: #FFC300;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #FFF;
+    }
+
+    form>div>.btn {
+        color: #001D3D;
+        font-size: 1.1em;
+    }
+
+{% endblock %}
 
 {% block conteudo %}
-    <h2>Cadastrar Usuário</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{form|bootstrap }}
-        <button type="submit" class="btn btn-primary">Entrar</button>
-    </form>
-<!--    {% if messages %}-->
-<!--        <ul class="messages">-->
-<!--            {% for message in messages %}-->
-<!--            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>-->
-<!--            {% endfor %}-->
-<!--        </ul>-->
-<!--    {% endif %}-->
+    <div class="row">
+        <div class="col card mt-5">
+            <h1>Cadastrar Usuário(a)</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{form|crispy }}
+                <div class="card-body">
+                    <button type="submit" class="btn form-control btn-warning">Cadastrar</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

@@ -1,5 +1,6 @@
 #from django.urls import reverse_lazy
 #from django.views.generic.edit import CreateView
+from django.contrib.auth import login
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render, get_object_or_404
@@ -24,6 +25,8 @@ def usuario_create(request):
         if form.is_valid():
             form.save()
             Perfil.objects.create(usuario=form.instance)
+            usuario = form.instance
+            login(request, usuario)
             # TODO: Implementar mensagem
             # messages.add_message(request, messages.INFO, 'Hello world.')
             # messages.debug(request, '%s SQL statements were executed.')
@@ -31,7 +34,7 @@ def usuario_create(request):
             # messages.success(request, 'Profile details updated.')
             # messages.warning(request, 'Your account expires in three days.')
             # messages.error(request, 'Document deleted.')
-            return redirect('login')
+            return redirect('home')
     else:
         form = UsuarioForm()
 
