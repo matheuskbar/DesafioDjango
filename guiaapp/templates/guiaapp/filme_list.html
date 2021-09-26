@@ -18,7 +18,15 @@
 {% endblock %}
 
 {% block conteudo %}
-  <table class="table">
+    <div class="navbar navbar-light bg-light">
+        <form method="get" class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+          <button class="btn btn-outline-success" type="submit">
+              <i class="fas fa-search"></i>
+          </button>
+        </form>
+    </div>
+  <table id="table_id" class="display table">
   <thead>
     <tr>
       <th scope="col">ID</th>
