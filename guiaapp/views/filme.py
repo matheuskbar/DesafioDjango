@@ -10,7 +10,10 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url=reverse_lazy('login'))
 def list(request):
-    filmes = Filme.objects.filter(usuario = request.user)
+    filmes = Filme.objects.filter(usuario=request.user)
+    pesquisa = request.GET.get('search')
+    if pesquisa:
+        filmes = Filme.objects.filter(usuario=request.user, nome__icontains=pesquisa)
     context = {
         'filmes': filmes,
     }
