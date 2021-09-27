@@ -27,21 +27,28 @@
     <title>Gerenciador Web</title>
   </head>
   <body>
+
     <nav>
       {% block menu %}
 
       {% endblock %}
     </nav>
+
     <header id="cabecalho" class="container">
       {% block titulo %}
 
       {% endblock %}
     </header>
+
     <main class="container">
       {% block conteudo %}
 
       {% endblock %}
     </main>
+
+    {% block rodape %}
+
+    {% endblock %}
 
 
     <!-- Optional JavaScript; choose one of the two! -->
