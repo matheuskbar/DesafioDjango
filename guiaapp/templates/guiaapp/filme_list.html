@@ -1,4 +1,4 @@
-{% extends 'conteudo.html' %}
+{% extends 'menu.html' %}
 
 {% block estilo %}
 
@@ -18,81 +18,107 @@
 {% endblock %}
 
 {% block conteudo %}
-    <div class="navbar navbar-light bg-light">
-        <form method="get" class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
-          <button class="btn btn-outline-success" type="submit">
-              <i class="fas fa-search"></i>
-          </button>
-        </form>
-    </div>
-  <table id="table_id" class="display table">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Nome do filme</th>
-      <th scope="col">Finalizado</th>
-      <th scope="col">Resenha</th>
-      <th scope="col">Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for filme in filmes %}
-      <!-- Modal -->
-        <div class="modal fade" id="modalDelete{{filme.id}}" tabindex="-1" aria-labelledby="modalDeleteLabel{{filme.id}}" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="modalDeleteLabel{{filme.id}}">Deletar Item {{filme.id}}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <a class="btn btn-primary" href="{% url 'guiaapp:filme_create' %}" role="button">
+      <span class="text-light text-center">
+        <i class="fas fa-plus"></i>
+      </span>
+    </a>
+    <table id="tabela-teste" class="display table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome do filme</th>
+          <th scope="col">Finalizado</th>
+          <th scope="col">Resenha</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for filme in filmes %}
+          <!-- Modal -->
+            <div class="modal fade" id="modalDelete{{filme.id}}" tabindex="-1" aria-labelledby="modalDeleteLabel{{filme.id}}" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalDeleteLabel{{filme.id}}">Deletar Item {{filme.id}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    Deseja realmente deletar {{filme.nome}}?
+                  </div>
+                  <div class="modal-footer">
+                      <a class="btn btn-danger" href="{% url 'guiaapp:filme_delete' filme.id %}" role="button">
+                          <span class="text-light text-center">
+                            Deletar
+                          </span>
+                      </a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  </div>
+                </div>
               </div>
-              <div class="modal-body">
-                Deseja realmente deletar {{filme.nome}}?
-              </div>
-              <div class="modal-footer">
-                  <a class="btn btn-danger" href="{% url 'guiaapp:filme_delete' filme.id %}" role="button">
+            </div>
+            <!-- Fim Modal -->
+
+            <tr>
+              <th scope="row">{{ filme.id }}</th>
+              <td>{{ filme.nome }}</td>
+              <td>{{ filme.get_finalizado }}</td>
+              <td>{{ filme.resenha }}</td>
+              <td>
+                  <a class="btn btn-primary" href="{% url 'guiaapp:filme_read' filme.id %}" role="button">
+                    <span class="text-light text-center">
+                      Vizualizar
+                    </span>
+                  </a>
+                <a class="btn btn-warning" href="{% url 'guiaapp:filme_update' filme.id %}" role="button">
+                  <span class="text-light text-center">
+                    Editar
+                  </span>
+                </a>
+                <!-- Botão do Modal -->
+                    <a class="btn btn-danger mr" role="button" data-bs-toggle="modal" data-bs-target="#modalDelete{{filme.id}}">
                       <span class="text-light text-center">
                         Deletar
                       </span>
-                  </a>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Fim Modal -->
+                    </a>
+                <!-- Fim Botão Modal -->
+              </td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
-        <tr>
-          <th scope="row">{{ filme.id }}</th>
-          <td>{{ filme.nome }}</td>
-          <td>{{ filme.get_finalizado }}</td>
-          <td>{{ filme.resenha }}</td>
-          <td>
-              <a class="btn btn-primary" href="{% url 'guiaapp:filme_read' filme.id %}" role="button">
-                <span class="text-light text-center">
-                  Vizualizar
-                </span>
-              </a>
-            <a class="btn btn-warning" href="{% url 'guiaapp:filme_update' filme.id %}" role="button">
-              <span class="text-light text-center">
-                Editar
-              </span>
-            </a>
-            <!-- Botão do Modal -->
-                <a class="btn btn-danger mr" role="button" data-bs-toggle="modal" data-bs-target="#modalDelete{{filme.id}}">
-                  <span class="text-light text-center">
-                    Deletar
-                  </span>
-                </a>
-            <!-- Fim Botão Modal -->
-          </td>
-        </tr>
-    {% endfor %}
-  </tbody>
-</table>
-<a class="btn btn-primary" href="{% url 'guiaapp:filme_create' %}" role="button">
-  <span class="text-light text-center">
-    Criar novo
-  </span>
-</a>
 {% endblock  %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function(){
+            $('#tabela-teste').DataTable({
+                "language": {
+                    "decimal":        "",
+                    "emptyTable":     "Nenhum dado a exibir",
+                    "info":           "Exibindo _START_ a _END_ de _TOTAL_ itens",
+                    "infoEmpty":      "0 itens encontrados",
+                    "infoFiltered":   "(Filtrado de _MAX_ entradas ao total)",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "lengthMenu":     "Exibindo _MENU_ itens",
+                    "loadingRecords": "Carregando...",
+                    "processing":     "Processando...",
+                    "search":         "Pesquisar: ",
+                    "zeroRecords":    "Nenhum item encontrado",
+                    "paginate": {
+                        "first":      "Primeira",
+                        "last":       "Última",
+                        "next":       "Próxima",
+                        "previous":   "Anterior"
+                    },
+                    "aria": {
+                        "sortAscending":  ": ordenação crescente",
+                        "sortDescending": ": ordenação decrescente"
+                    }
+                }
+            });
+        })
+    </script>
+{% endblock %}
